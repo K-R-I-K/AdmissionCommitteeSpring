@@ -18,14 +18,10 @@ public class Statement {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "statement_sequence")
     @SequenceGenerator(name = "statement_sequence", sequenceName = "statement_sequence", allocationSize = 1)
     private long id;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false, name = "user_id")
-    //@Column(nullable = false)
-    private User user;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false, name = "faculty_id")
-    //@Column(nullable = false)
-    private Faculty faculty;
+    @Column(nullable = false)
+    private long userId;
+    @Column(nullable = false)
+    private long facultyId;
     @Column(nullable = false)
     private int mark1;
     @Column(nullable = false)

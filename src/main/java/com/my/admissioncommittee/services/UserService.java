@@ -1,5 +1,6 @@
 package com.my.admissioncommittee.services;
 
+import com.my.admissioncommittee.controllers.UserController;
 import com.my.admissioncommittee.entities.Faculty;
 import com.my.admissioncommittee.entities.Statement;
 import com.my.admissioncommittee.entities.User;
@@ -75,7 +76,7 @@ public class UserService implements UserDetailsService {
         LOGGER.info("Get list of users by faculty id" + id);
         List<Long> userIds = statementService.getStatementListByFacultyId(id)
                 .stream()
-                .map(e -> e.getUser().getId())
+                .map(Statement::getUserId)
                 .toList();
         List<User> users = new ArrayList<>();
         userIds.forEach(userId -> users.add(userRepository.findById(userId).orElse(null)));
@@ -85,11 +86,6 @@ public class UserService implements UserDetailsService {
     public User getUserByLoginAndPassword(String login, String password) {
         LOGGER.info("Get user by login and password" + login + " " + password);
         return userRepository.findByLoginAndPassword(login, password);
-    }
-
-    public User getUserById(Long id) {
-        LOGGER.info("Get user by id" + id);
-        return userRepository.findById(id).orElse(null);
     }
 
     public void save(User user) {
@@ -120,6 +116,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        UserController.user = userRepository.findByLogin(login);
         return userRepository.findByLogin(login);
     }
 }

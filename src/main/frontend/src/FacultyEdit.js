@@ -17,9 +17,12 @@ const FacultyEdit = () => {
 
     useEffect(() => {
         if (id !== 'new') {
-            fetch(`/faculty/${id}`)
+            fetch(`/getFaculty/${id}`)
                 .then(response => response.json())
-                .then(data => setFaculty(data));
+                .then(data => {
+                    console.log(data)
+                    setFaculty(data)
+                });
         }
     }, [id, setFaculty]);
 
@@ -43,7 +46,7 @@ const FacultyEdit = () => {
             credentials: 'include'
         });
         setFaculty(initialFormState);
-        navigate('/getFaculties');
+        navigate('/getFaculties/1');
     }
 
     const title = <h2>{faculty.id ? 'Edit Faculty' : 'Add Faculty'}</h2>;
@@ -59,12 +62,12 @@ const FacultyEdit = () => {
                                onChange={handleChange} autoComplete="name"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="budgetPlaces">Address</Label>
+                        <Label for="budgetPlaces">Budget places</Label>
                         <Input type="number" name="budgetPlaces" id="budgetPlaces" value={faculty.budgetPlaces || ''}
                                onChange={handleChange} autoComplete="address-level1"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="totalPlaces">City</Label>
+                        <Label for="totalPlaces">Total places</Label>
                         <Input type="number" name="totalPlaces" id="totalPlaces" value={faculty.totalPlaces || ''}
                                onChange={handleChange} autoComplete="address-level1"/>
                     </FormGroup>
@@ -87,7 +90,7 @@ const FacultyEdit = () => {
                     </div>*/}
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/getFaculties">Cancel</Button>
+                        <Button color="secondary" tag={Link} to="/getFaculties/1">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>

@@ -66,23 +66,22 @@ public class FacultyController {
         return "redirect:/home";
     }
 
-    @GetMapping("/getFaculties")
-    public Collection<Faculty> getFaculties(
-            @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
+    @GetMapping("/getFaculties/{pageNum}")
+    public Collection<Faculty> getFaculties(@PathVariable("pageNum") int pageNum) {
         LOGGER.info("Get /getFaculties");
         Page<Faculty> page = facultyService.getPage(pageNum - 1);
         return page.getContent();
     }
 
-    @PutMapping("/faculty/{id}")
-    public void updateFaculty(@Valid @RequestBody Faculty faculty/*, @PathVariable("id") Long id*/) {
+    @PutMapping("/getFaculties/faculty/{id}")
+    public void updateFaculty(@Valid @RequestBody Faculty faculty, @PathVariable("id") Long id) {
         LOGGER.info("Update /faculty/{id}");
-        //faculty.setId(id);
+        faculty.setId(id);
         facultyService.save(faculty);
         //return facultyService.findByName(faculty.getName());
     }
 
-    @DeleteMapping("/faculty/{id}")
+    @DeleteMapping("/getFaculties/faculty/{id}")
     public void deleteFaculty(@PathVariable Long id) {
         LOGGER.info("Delete /faculty/{id}");
         facultyService.deleteById(id);

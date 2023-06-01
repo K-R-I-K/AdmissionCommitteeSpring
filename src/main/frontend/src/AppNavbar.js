@@ -40,7 +40,7 @@ const AppNavbar = () => {
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="navbar-nav mr-auto" style={{width: "100%"}} navbar>
                     <NavItem>
-                        <NavLink href="/getFaculties">Faculty List</NavLink>
+                        <NavLink href="/getFaculties/1">Faculty List</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink href="/faculty/new">Add new Faculty</NavLink>

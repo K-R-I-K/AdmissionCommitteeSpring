@@ -79,30 +79,30 @@ const Faculty = () => {
 
     const userListNew = facultyInfo?.userList?.map(user => {
         let statementList = facultyInfo.statementList;
-        let rating = statementList.find((i) => i.user.id === user.id).mark1 * 0.3 +
-            statementList.find((i) => i.user.id === user.id).mark2 * 0.5 +
-            statementList.find((i) => i.user.id === user.id).mark3 * 0.2 +
-            statementList.find((i) => i.user.id === user.id).avgCerMark;
+        let rating = statementList.find((i) => i.userId === user.id).mark1 * 0.3 +
+            statementList.find((i) => i.userId === user.id).mark2 * 0.5 +
+            statementList.find((i) => i.userId === user.id).mark3 * 0.2 +
+            statementList.find((i) => i.userId === user.id).avgCerMark;
 
         return <tr key={user.id}>
             <td style={{ whiteSpace: 'nowrap' }}>{user.name}</td>
             <td>{facultyInfo.statementList
-                .find((i) => i.user.id === user.id).mark1} {statementList
-                .find((i) => i.user.id === user.id).mark2} {statementList
-                .find((i) => i.user.id === user.id).mark3} {statementList
-                .find((i) => i.user.id === user.id).avgCerMark}
+                .find((i) => i.userId === user.id).mark1} {statementList
+                .find((i) => i.userId === user.id).mark2} {statementList
+                .find((i) => i.userId === user.id).mark3} {statementList
+                .find((i) => i.userId === user.id).avgCerMark}
             </td>
             <td>
                 {rating}
             </td>
             <td>
-                {statementList.find((i) => i.user.id === user.id).passed ? "true" : "false"}
+                {statementList.find((i) => i.userId === user.id).passed ? "true" : "false"}
             </td>
             <td>
                 <ButtonGroup>
-                    {statementList.find((i) => i.user.id === user.id).passed ?
-                        <Button size="sm" color="danger" onClick={() => forbid(statementList.find((i) => i.user.id === user.id).id)}>Forbid</Button> :
-                        <Button size="sm" color="primary" onClick={() => permit(statementList.find((i) => i.user.id === user.id).id)}>Permit</Button>
+                    {statementList.find((i) => i.userId === user.id).passed ?
+                        <Button size="sm" color="danger" onClick={() => forbid(statementList.find((i) => i.userId === user.id).id)}>Forbid</Button> :
+                        <Button size="sm" color="primary" onClick={() => permit(statementList.find((i) => i.userId === user.id).id)}>Permit</Button>
                     }
                 </ButtonGroup>
             </td>

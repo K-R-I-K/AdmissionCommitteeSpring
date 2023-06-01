@@ -15,13 +15,13 @@ const App = () => {
         <Router>
             <Routes>
                 <Route exact path="/" element={<Home/>}/>
-                <Route path="/getFaculties" exact={true} element={<FacultyList/>}/>
-                <Route path="/faculty/:id" exact={true} element={<FacultyEdit/>}/>
-                <Route path="/getFaculty/:id" exact={true} element={<Faculty/>}/>
-                <Route path="/getUsers" exact={true} element={<UserList/>}/>
-                <Route path="/registerForFaculties" exact={true} element={<RegisterForFaculties/>}/>
-                <Route path="/logIn" exact={true} element={<LogIn/>}/>
-                <Route path="/userRegistration" exact={true} element={<UserRegistration/>}/>
+                <Route path="/getFaculties/:pageNumber" element={<FacultyList/>}/>
+                <Route path="/faculty/:id" element={<FacultyEdit/>}/>
+                <Route path="/getFaculty/:id" element={<Faculty/>}/>
+                <Route path="/getUsers" element={<UserList/>}/>
+                <Route path="/registerForFaculties" element={<RegisterForFaculties/>}/>
+                <Route path="/logIn" element={<LogIn/>}/>
+                <Route path="/userRegistration" element={<UserRegistration/>}/>
             </Routes>
         </Router>
     )

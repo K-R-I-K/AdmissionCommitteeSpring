@@ -4,7 +4,6 @@ import com.my.admissioncommittee.entities.Statement;
 import com.my.admissioncommittee.entities.StatementInfo;
 import com.my.admissioncommittee.services.FacultyService;
 import com.my.admissioncommittee.services.StatementService;
-import com.my.admissioncommittee.services.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +13,11 @@ public class StatementController {
     private static final Logger LOGGER = Logger.getLogger(StatementController.class);
     private final StatementService statementService;
     private final FacultyService facultyService;
-    private final UserService userService;
 
     @Autowired
-    public StatementController(StatementService statementService, FacultyService facultyService, UserService userService) {
+    public StatementController(StatementService statementService, FacultyService facultyService) {
         this.statementService = statementService;
         this.facultyService = facultyService;
-        this.userService = userService;
     }
 
     @PutMapping("/getFaculty/statementPermit/{id}")
@@ -42,8 +39,8 @@ public class StatementController {
         for (Long facultyId :statementInfo.getSelectedFaculties()) {
             statementService.save(Statement.builder()
                     .id(0)
-                    .user(userService.getUserById(userId))
-                    .faculty(facultyService.findById(facultyId))
+                    .userId(userId)
+                    .facultyId(facultyId)
                     .mark1(statementInfo.getMark1())
                     .mark2(statementInfo.getMark2())
                     .mark3(statementInfo.getMark3())

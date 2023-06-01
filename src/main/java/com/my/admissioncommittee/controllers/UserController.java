@@ -84,17 +84,6 @@ public class UserController {
     public void registerNewUser(@RequestBody User user) {
         LOGGER.info("Post /registration");
         boolean alreadyExists = userService.existsByLogin(user.getLogin());
-        if(alreadyExists) {
-            /*bindingResult.rejectValue(
-                    "login",
-                    "",
-                    "User with such login already exists"
-            );*/
-        }
-        /*if(bindingResult.hasErrors()) {
-            LOGGER.error("Error while registering new user");
-            return "registration";
-        }*/
         userService.save(user);
         this.user = userService.getUserByLoginAndPassword(user.getLogin(), user.getPassword());
     }
